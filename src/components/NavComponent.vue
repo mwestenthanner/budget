@@ -1,5 +1,7 @@
 <template>
-  <ActionComponent class="main-controls" v-if="showControls"></ActionComponent>
+  <div class="main-controls" v-if="showControls">
+    <ActionComponent></ActionComponent>
+  </div>
   <nav>
     <button @click="showControls = !showControls">
       <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">

@@ -1,6 +1,10 @@
 <template>
   <div class="actions">
-    <button class="red">
+    <button
+      class="red"
+      @click="transactionModal = true"
+      @close-modal="transactionModal = false"
+    >
       <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
         <g data-name="Layer 61" id="Layer_61">
           <path
@@ -24,7 +28,11 @@
       </svg>
       <span>Expense</span>
     </button>
-    <button class="green">
+    <button
+      class="green"
+      @click="transactionModal = !transactionModal"
+      @close-modal="transactionModal = false"
+    >
       <svg viewBox="0 0 24 14.92" xmlns="http://www.w3.org/2000/svg">
         <title />
         <g data-name="Camada 2" id="Camada_2">
@@ -96,9 +104,18 @@
       <span>Goal</span>
     </button>
   </div>
+  <AddTransactionComponent
+    :isExpense="true"
+    v-if="transactionModal"
+  ></AddTransactionComponent>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { ref } from "vue";
+import AddTransactionComponent from "./AddTransactionComponent.vue";
+
+const transactionModal = ref(false);
+</script>
 
 <style lang="scss" scoped>
 .actions {

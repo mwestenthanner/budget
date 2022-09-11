@@ -100,6 +100,9 @@ export default createStore({
         (box) => box.fractionAmount != box.totalAmount
       );
     },
+    getBoxNames: (state) => {
+      return state.spendBoxes.map((box) => box.boxName);
+    },
   },
   mutations: {
     setBaseIncome(state) {
