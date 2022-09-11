@@ -1,34 +1,20 @@
 <template>
-  <router-view />
-  <nav>
-    <ul>
-      <li><router-link to="/">Dashboard</router-link></li>
-      <li><router-link to="/">Activity</router-link></li>
-      <li><router-link to="/">Boxes</router-link></li>
-      <li><router-link to="/">Goals</router-link></li>
-    </ul>
-  </nav>
+  <router-view class="main-view" />
+  <NavComponent></NavComponent>
 </template>
+
+<script lang="ts" setup>
+import NavComponent from "@/components/NavComponent.vue";
+</script>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.main-view {
+  padding: 2rem;
+  z-index: 2;
 }
 </style>
