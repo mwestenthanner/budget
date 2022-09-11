@@ -11,19 +11,9 @@
 
 <script lang="ts" setup>
 import TransactionComponent from "@/components/TransactionComponent.vue";
+import { computed } from "vue";
+import { useStore } from "vuex";
 
-const transactions = [
-  {
-    id: 1,
-    name: "Starbucks",
-    amount: -13.33,
-    date: "2022-09-02",
-  },
-  {
-    id: 2,
-    name: "Monthly income",
-    amount: 2124,
-    date: "2022-09-01",
-  },
-];
+const store = useStore();
+const transactions = computed(() => store.state.transactions);
 </script>

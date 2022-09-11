@@ -13,23 +13,9 @@
 
 <script lang="ts" setup>
 import BoxComponent from "@/components/BoxComponent.vue";
+import { computed } from "vue";
+import { useStore } from "vuex";
 
-const boxes = [
-  {
-    id: 1,
-    boxName: "New car",
-    emoji: "🚗",
-    totalAmount: 25000,
-    fractionAmount: 120,
-    saving: true,
-  },
-  {
-    id: 2,
-    boxName: "Winter wardrobe",
-    emoji: "👕",
-    totalAmount: 200,
-    fractionAmount: 170,
-    saving: true,
-  },
-];
+const store = useStore();
+const boxes = computed(() => store.state.goalBoxes);
 </script>

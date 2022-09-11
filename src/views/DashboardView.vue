@@ -4,44 +4,18 @@
     <main>
       <div class="overview">
         <p class="label">Left to spend:</p>
-        <p class="lg-amount">240 €</p>
-        <p class="sm-amount">/ 2000 €</p>
+        <p class="lg-amount">{{ unboxedIncome }} {{ currency }}</p>
+        <p class="sm-amount">/ {{ baseIncome }} {{ currency }}</p>
       </div>
       <h2>Track spending</h2>
       <ActionComponent></ActionComponent>
       <h2>Boxes</h2>
       <div class="boxes">
-        <div class="box">
-          <p>Groceries</p>
-          <div class="box-amount">
-            <h3>215</h3>
-            <p>/ 300 €</p>
-          </div>
-        </div>
-        <div class="box">
-          <p>Transport</p>
-          <div class="box-amount">
-            <h3>20</h3>
-            <p>/ 120 €</p>
-          </div>
-        </div>
+        <BoxCard v-for="box in boxes" :key="box.id" :box="box"></BoxCard>
       </div>
       <h2>Goals</h2>
       <div class="boxes">
-        <div class="box">
-          <p>Groceries</p>
-          <div class="box-amount">
-            <h3>215</h3>
-            <p>/ 300 €</p>
-          </div>
-        </div>
-        <div class="box">
-          <p>Transport</p>
-          <div class="box-amount">
-            <h3>20</h3>
-            <p>/ 120 €</p>
-          </div>
-        </div>
+        <BoxCard v-for="box in goals" :key="box.id" :box="box"></BoxCard>
       </div>
     </main>
   </div>
@@ -49,6 +23,16 @@
 
 <script lang="ts" setup>
 import ActionComponent from "@/components/ActionComponent.vue";
+import { computed } from "@vue/reactivity";
+import { useStore } from "vuex";
+import BoxCard from "../components/BoxCard.vue";
+
+const store = useStore();
+const currency = computed(() => store.state.currency);
+const baseIncome = computed(() => store.state.baseIncome);
+const unboxedIncome = computed(() => store.state.unboxedIncome);
+const boxes = computed(() => store.getters.getNonFullBoxes);
+const goals = computed(() => store.state.goalBoxes);
 </script>
 
 <style lang="scss" scoped>
@@ -80,28 +64,5 @@ h2 {
   margin-top: 2rem;
   display: flex;
   gap: 1rem;
-  .box {
-    background-color: bisque;
-    padding: 1.5rem;
-    aspect-ratio: 5/6;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 1rem;
-
-    .box-amount {
-      text-align: right;
-      margin-left: 1rem;
-    }
-
-    h3 {
-      margin-bottom: 0.2rem;
-      font-size: 220%;
-    }
-
-    p {
-      font-size: 90%;
-    }
-  }
 }
 </style>

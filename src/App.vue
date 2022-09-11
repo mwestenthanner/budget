@@ -5,6 +5,12 @@
 
 <script lang="ts" setup>
 import NavComponent from "@/components/NavComponent.vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+
+store.commit("setBaseIncome");
+store.commit("setUnboxedIncome");
 </script>
 
 <style lang="scss">

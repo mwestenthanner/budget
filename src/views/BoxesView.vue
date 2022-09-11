@@ -7,7 +7,7 @@
         :key="box.id"
         :box="box"
       ></BoxComponent>
-      <h2>Full boxes</h2>
+      <h2 v-if="hasFullBoxes != 0">Full boxes</h2>
       <BoxComponent
         v-for="box in fullBoxes"
         :key="box.id"
@@ -19,44 +19,14 @@
 
 <script lang="ts" setup>
 import BoxComponent from "@/components/BoxComponent.vue";
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
 
-const boxes = [
-  {
-    id: 1,
-    boxName: "Groceries",
-    emoji: "🥕",
-    totalAmount: 250,
-    fractionAmount: 50,
-    saving: false,
-  },
-  {
-    id: 2,
-    boxName: "Fun Money",
-    emoji: "🎉",
-    totalAmount: 100,
-    fractionAmount: 1,
-    saving: false,
-  },
-];
+const store = useStore();
 
-const fullBoxes = [
-  {
-    id: 3,
-    boxName: "Netflix",
-    emoji: "🥕",
-    totalAmount: 10,
-    fractionAmount: 10,
-    saving: false,
-  },
-  {
-    id: 4,
-    boxName: "Rent",
-    emoji: "🎉",
-    totalAmount: 800,
-    fractionAmount: 800,
-    saving: false,
-  },
-];
+const boxes = computed(() => store.getters.getNonFullBoxes);
+const fullBoxes = computed(() => store.getters.getFullBoxes);
+const hasFullBoxes = ref(fullBoxes.value.length);
 </script>
 
 <style lang="scss" scoped>
