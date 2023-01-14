@@ -11,9 +11,8 @@
 
 <script lang="ts" setup>
 import TransactionComponent from "@/components/TransactionComponent.vue";
-import { computed } from "vue";
-import { useStore } from "vuex";
+import { useTransactionStore } from "@/stores/transactions";
+import { storeToRefs } from "pinia";
 
-const store = useStore();
-const transactions = computed(() => store.state.transactions);
+const { transactions } = storeToRefs(useTransactionStore());
 </script>

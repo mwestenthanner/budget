@@ -46,7 +46,7 @@ const spendBoxes = [
     boxName: "Fun Money",
     emoji: "🎉",
     totalAmount: 100,
-    fractionAmount: 1,
+    fractionAmount: 99,
     saving: false,
   },
   {
@@ -55,6 +55,14 @@ const spendBoxes = [
     emoji: "📺",
     totalAmount: 10,
     fractionAmount: 10,
+    saving: false,
+  },
+  {
+    id: 4,
+    boxName: "Dates",
+    emoji: "💖",
+    totalAmount: 100,
+    fractionAmount: 1,
     saving: false,
   },
 ];

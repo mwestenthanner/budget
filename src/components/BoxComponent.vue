@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineProps, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 
 const props = defineProps({
   box: {
@@ -43,10 +43,16 @@ function calculateProgressPercentage() {
   const height = progressBar?.offsetHeight;
   const decimal = fractionAmount.value / totalAmount.value;
 
-  if (decimal * width < height && fractionAmount.value > 0) {
+  // Case for very high percentages
+  if ((1 - decimal) * width < height && 1 - decimal > 0) {
     progressFraction.style.width = "1rem";
-  } else {
-    const widthString = decimal * 100 + "%";
+  } 
+  // Case for very low percentages
+  else if (decimal * width < (0.5 * height) && decimal > 0) {
+    progressFraction.style.width = "calc(100% - 0.5rem)";
+  } 
+  else {
+    const widthString = (100 - decimal * 100) + "%";
     progressFraction.style.width = widthString;
   }
 }
@@ -77,12 +83,14 @@ h3 {
   background: rgb(229, 229, 229);
   border-radius: 1rem;
   margin: 1rem 0;
+  display: flex;
+  flex-direction: row-reverse;
 
   .progress {
     display: block;
     height: 100%;
     border-radius: 1rem;
-    background-color: rgb(239, 115, 115);
+    background-color: rgb(140, 208, 174); // rgb(239, 115, 115);
     position: absolute;
     overflow: hidden;
   }

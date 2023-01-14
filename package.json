@@ -13,10 +13,10 @@
     "@capacitor/cli": "^4.2.0",
     "@capacitor/core": "^4.2.0",
     "@vueform/multiselect": "^2.5.2",
+    "pinia": "^2.0.28",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
-    "vuex": "^4.0.0",
-    "pinia": "^2.0.28"
+    "vuex": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.12",

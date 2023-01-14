@@ -3,7 +3,7 @@
     <h1>Goals</h1>
     <main>
       <BoxComponent
-        v-for="box in boxes"
+        v-for="box in goalBoxes"
         :key="box.id"
         :box="box"
       ></BoxComponent>
@@ -13,9 +13,8 @@
 
 <script lang="ts" setup>
 import BoxComponent from "@/components/BoxComponent.vue";
-import { computed } from "vue";
-import { useStore } from "vuex";
+import { useBoxStore } from "@/stores/boxes";
+import { storeToRefs } from "pinia";
 
-const store = useStore();
-const boxes = computed(() => store.state.goalBoxes);
+const { goalBoxes } = storeToRefs(useBoxStore())
 </script>

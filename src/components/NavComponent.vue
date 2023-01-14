@@ -1,6 +1,6 @@
 <template>
   <div class="main-controls" v-if="showControls">
-    <ActionComponent></ActionComponent>
+    <ActionBar />
   </div>
   <nav>
     <button @click="showControls = !showControls">
@@ -126,7 +126,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import ActionComponent from "./ActionComponent.vue";
+import ActionBar from "./ActionBar.vue";
 
 const showControls = ref(false);
 </script>

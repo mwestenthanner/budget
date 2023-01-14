@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, ref, computed } from "vue";
+import { ref, computed } from "vue";
 import Multiselect from "@vueform/multiselect";
 import { useStore } from "vuex";
 
@@ -57,10 +57,15 @@ function getType() {
   width: 70vw;
   padding: 2rem;
   border-radius: 1rem;
+  height: fit-content;
 }
 
 h2 {
   margin-bottom: 1.5rem;
+}
+
+label {
+  margin-top: 1rem;
 }
 
 #box-select {
